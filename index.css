@@ -14,11 +14,12 @@ body {
     min-height: 148px;
     border: 4px black solid;
     border-radius: 4px;
+    flex-grow: 1;
 
 }
 
 .body-container {
-    width: 80%;
+    width: 70vw;
     justify-content: center;
     align-items: center;
 }
@@ -48,9 +49,34 @@ h1, h2, p {
     gap: 50px;
     justify-content: space-evenly;
 }
-.other a {
+.other ul {
+    width: 20vw;
     border: 4px gray solid;
     background-color: gray;
     border-radius: 4px;
+}
 
+.other a {
+    text-align: center;
+    text-decoration: none;
+}
+
+
+#description {
+    min-height: 300px;
+    border: 4px solid;
+    border-color: rgb(30, 30, 30);
+    border-radius: 4px;
+    background-color: rgb(30, 30, 30);
+    color: white;
+    font-weight: 500;
+    text-align: justify;
+    padding: 8px;
+}
+
+footer {
+    border: 4px solid;
+    border-color: rgb(30, 30, 30);
+    border-radius: 4px;
+    background-color: rgb(30, 30, 30);
 }
