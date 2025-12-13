@@ -1,30 +1,78 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="index.css">
-        <link rel="script" href="index.js">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create Flashcard Website</title>
+        
+        <link rel="stylesheet" href="../index.css">
+        <link rel="script" href="../index.js">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
     </head>
     <body>
-        <nav>
-            <ul>
-                <a href="../index.html">Home</a>
-            </ul>
-        </nav>
+        <div class="body-container">
+            <nav>
+                <ul>
+                    <li><a href="https://whosmikhail.github.io/WDProjPotassiumAyesGo">Home</a></li>
+                    <li><a href="https://whosmikhail.github.io/WDProjPotassiumAyesGo/public/game.html">Play!</a></li>
+                    <li><a href="https://whosmikhail.github.io/WDProjPotassiumAyesGo/public/collect.html">Collection</a></li>
+                    <li><a href="https://whosmikhail.github.io/WDProjPotassiumAyesGo/public/gacha.html">Gacha</a></li>
+                </ul>
+            </nav>
+            <div class="flashcard-container" id="flashcard-container">
+                <div class="flashcard" id="zilch"><p style="font-size: larger;"></p><p></p></div>
 
-        <div class="card-container">
+            </div>
 
         </div>
 
         <div class="create-container">
-            <div class="card" id="plus"></div>
-            <input class="Question" id="zilch">
-            <input class="Answer" id="zilch">
+            <div class="flashcard" id="plus">
+                <label for="Question">Question:</label>
+                <input class="Question" id="Question">
+                <label for="Answer">Answer:</label>
+                <input class="Answer" id="Answer">
+            </div>
 
-            <button class="submit">Create</button>
+            <button class="submit" onclick="CreateFlashcard()">CREATE</button>
         </div>
+        <script>
+            let questionnum = 0
+
+            function CreateFlashcard() {
+
+                questionnum += 1;
+
+                const question = document.getElementById("Question");
+                const answer = document.getElementById("Answer");
+                const flashcard = document.getElementById('zilch');
+                const container = document.getElementById('flashcard-container');
+                const paragraph = flashcard.getElementsByTagName('p')
+                const empty = '<div class="flashcard" id="zilch"><p></p><p></p></div>'
+                
+                const tanong = paragraph[0];
+                const sagot = paragraph[1];
+
+                const Qv = question.value;
+                const Av = answer.value;
+
+                localStorage.setItem('question' + questionnum, Qv)
+                localStorage.setItem('answer' + questionnum, Av)
+
+                tanong.textContent = localStorage.getItem('question' + questionnum)
+                sagot.textContent = localStorage.getItem('answer' + questionnum)
+
+                flashcard.id = 'Q' + questionnum;
+
+
+        
+
+                container.innerHTML += empty;
+
+            }           
+        </script>
     </body>
 </html> 
