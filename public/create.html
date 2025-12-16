@@ -123,13 +123,13 @@
                 button.style.backgroundColor = "#303030"
 
                 for (i = 0; i < container.children.length; i++) {
-                    if (!qgroup) {
-                        qgroup[i] = div.children[0].textContent;
-                        agroup[i] = div.children[1].textContent;
+                    if (qgroup[i] == undefined || qgroup[i] == null) {
+                        qgroup[i] = divelem[0].textContent
+                        agroup[i] = divelem[1].textContent
+                        break;
                     }
                 }
-
-                ThisString(qgroup, agroup)
+                 
             }
 
             function ThisString(qgroup, agroup) {
@@ -146,14 +146,15 @@
             }
 
             function RemoveSelect() {
+
+                ThisString(qgroup, agroup)
+
                 const groupselect = document.getElementById('group-select');
                 const button = container.getElementsByTagName('button')
                 const flashcard = container.children;
                 for (i = 0; i < button.length; i++) {
                     let temp = flashcard[i];
                     let orary = button[i];
-
-                    console.log(temp)
 
                     orary.textContent = "Reveal Answer";
                     orary.setAttribute('onclick', "RevealAnswer(this)")
@@ -170,7 +171,7 @@
             }
 
             function LoadGroup() {
-                const flashcardlist = container.getElementsByTagName('div')
+                const flashcardlist = container.children
                 let flashcard;
                 let questionarr = JSON.parse(localStorage.getItem('qgroup'))
                 let answerarr = JSON.parse(localStorage.getItem('agroup'))
