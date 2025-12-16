@@ -12,7 +12,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body onload="update()">
         <div class="body-container">
             <nav>
                 <ul>
@@ -23,9 +23,10 @@
                 </ul>
             </nav>
             <div class="flashcard-container" id="flashcard-container">
-                <div class="flashcard" id="zilch"><p style="font-size: larger;"></p><p></p></div>
-
+                <div class="flashcard " id="zilch"><p></p><p style="opacity: 0;"></p><button id="reveal" onclick="RevealAnswer(this)">Reveal Answer</button></div>
             </div>
+            <button id="group-select" onclick="SelectGroup()">Select Group:</button>
+            <button id="delete-select" onclick="Clear()">Delete:</button>
 
         </div>
 
@@ -38,9 +39,18 @@
             </div>
 
             <button class="submit" onclick="CreateFlashcard()">CREATE</button>
+
         </div>
         <script>
+
             let questionnum = 0
+            let container = document.getElementById('flashcard-container');
+            let qgroup = []
+            let agroup = []
+
+            function update() {
+                localStorage.clear;
+            }
 
             function CreateFlashcard() {
 
@@ -50,8 +60,8 @@
                 const answer = document.getElementById("Answer");
                 const flashcard = document.getElementById('zilch');
                 const container = document.getElementById('flashcard-container');
-                const paragraph = flashcard.getElementsByTagName('p')
-                const empty = '<div class="flashcard" id="zilch"><p></p><p></p></div>'
+                const paragraph = flashcard.getElementsByTagName('p');
+                const empty = '<div class="flashcard " id="zilch"><p></p><p style="opacity: 0;"></p><button id="reveal" onclick="RevealAnswer(this)">Reveal Answer</button></div>'
                 
                 const tanong = paragraph[0];
                 const sagot = paragraph[1];
@@ -66,13 +76,67 @@
                 sagot.textContent = localStorage.getItem('answer' + questionnum)
 
                 flashcard.id = 'Q' + questionnum;
-
-
-        
+                flashcard.lastChild.id = 'B' + questionnum;  
 
                 container.innerHTML += empty;
 
-            }           
+            }          
+            
+            function RevealAnswer(x) {
+                let button = document.getElementById(x.id);
+                let div = button.parentNode;
+                let divelem = div.children;
+
+                div.children[1].style.opacity = '100';
+            }
+
+            function SelectGroup() {
+                const flashcard = container.children
+                const button = container.getElementsByTagName('button')
+                for (i = 0; i < button.length; i++) {
+                    let temp = flashcard[i]
+
+                    button[i].style.backgroundColor = "#e61717";
+                    button[i].textContent = "Select";
+                    button[i].addEventListener('mouseenter', () => {
+                        button[i].addEventListener('click', SelectFlashcard(button[i]))
+                    })
+                    button[i].addEventListener('mouseleave', () => {
+                        button[i].removeEventListener('click', SelectFlashcard(button[i]))
+                    })
+
+                    temp.addEventListener('mouseenter', () => {
+                        temp.classList.add('hovered')
+                    })
+                    temp.addEventListener('mouseleave', () => {
+                        temp.classList.remove('hovered')
+                    })
+                }
+            }
+
+            function SelectFlashcard(x) {
+                let button = document.getElementById(x.id);
+                let div = button.parentNode;
+                let divelem = div.children;
+
+                button.style.backgroundColor = "#004dc9"
+
+                qgroup += div.children[0].textContent;
+                agroup += div.children[1].textContent;
+
+                if (localStorage.getItem('qgroup') != null || localStorage.getItem('agroup') != null) {
+                    localStorage.removeItem('qgroup');
+                    localStorage.removeItem('agroup');
+
+                    localStorage.setItem('qgroup', JSON.stringify('qgroup'));
+                    localStorage.setItem('agroup', JSON.stringify('agroup'));
+                }
+
+                console.log(qgroup);
+                console.log(agroup);
+            }
+
+
         </script>
     </body>
 </html> 
