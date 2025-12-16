@@ -26,7 +26,7 @@
                 <div class="flashcard " id="zilch"><p></p><p style="opacity: 0;"></p><button id="reveal" onclick="RevealAnswer(this)">Reveal Answer</button></div>
             </div>
             <button id="group-select" onclick="SelectGroup()">Select Group:</button>
-            <button id="delete-select" onclick="Clear()">Delete:</button>
+            <button id="delete-select" onclick="LoadGroup()">Load Group:</button>
 
         </div>
 
@@ -45,8 +45,11 @@
 
             let questionnum = 0
             let container = document.getElementById('flashcard-container');
-            let qgroup = []
-            let agroup = []
+            let qgrouplist = []
+            let agrouplist = []
+            let qgroup = [];
+            let agroup = [];
+            let pastY;
 
             function update() {
                 localStorage.clear;
@@ -89,29 +92,27 @@
 
                 div.children[1].style.opacity = '100';
             }
+            
 
             function SelectGroup() {
                 const flashcard = container.children
                 const button = container.getElementsByTagName('button')
+                const groupselect = document.getElementById('group-select')
                 for (i = 0; i < button.length; i++) {
                     let temp = flashcard[i]
+                    let orary = button[i]
 
                     button[i].style.backgroundColor = "#e61717";
                     button[i].textContent = "Select";
-                    button[i].addEventListener('mouseenter', () => {
-                        button[i].addEventListener('click', SelectFlashcard(button[i]))
-                    })
-                    button[i].addEventListener('mouseleave', () => {
-                        button[i].removeEventListener('click', SelectFlashcard(button[i]))
-                    })
+                    orary.setAttribute('onclick', "SelectFlashcard(this)")
 
-                    temp.addEventListener('mouseenter', () => {
-                        temp.classList.add('hovered')
-                    })
-                    temp.addEventListener('mouseleave', () => {
-                        temp.classList.remove('hovered')
-                    })
                 }
+
+                groupselect.textContent = "Finished?"
+                groupselect.setAttribute('onclick', "RemoveSelect()")
+                groupselect.style.backgroundColor = "#e61717"
+
+
             }
 
             function SelectFlashcard(x) {
@@ -119,7 +120,7 @@
                 let div = button.parentNode;
                 let divelem = div.children;
 
-                button.style.backgroundColor = "#004dc9"
+                button.style.backgroundColor = "#303030"
 
                 qgroup += div.children[0].textContent;
                 agroup += div.children[1].textContent;
@@ -128,12 +129,36 @@
                     localStorage.removeItem('qgroup');
                     localStorage.removeItem('agroup');
 
-                    localStorage.setItem('qgroup', JSON.stringify('qgroup'));
-                    localStorage.setItem('agroup', JSON.stringify('agroup'));
+                    localStorage.setItem('qgroup', JSON.stringify(qgroup));
+                    localStorage.setItem('agroup', JSON.stringify(agroup));
+                } else {
+                    localStorage.setItem('qgroup', JSON.stringify(qgroup));
+                    localStorage.setItem('agroup', JSON.stringify(agroup));
+                }
+            }
+
+            function RemoveSelect() {
+                const groupselect = document.getElementById('group-select');
+                const button = container.getElementsByTagName('button')
+                const flashcard = container.children;
+                for (i = 0; i < button.length; i++) {
+                    let temp = flashcard[i];
+                    let orary = button[i];
+
+                    console.log(temp)
+
+                    orary.textContent = "Reveal Answer";
+                    orary.setAttribute('onclick', "RevealAnswer(this)")
+                    orary.setAttribute('style', 'background-color: #004dc9')
+
                 }
 
-                console.log(qgroup);
-                console.log(agroup);
+                groupselect.setAttribute('onclick', 'SelectGroup()')
+                groupselect.textContent = "Select Group?"
+                groupselect.removeAttribute('style', 'background-color: #004dc9');
+                groupselect.setAttribute('style', 'background')
+
+
             }
 
 
