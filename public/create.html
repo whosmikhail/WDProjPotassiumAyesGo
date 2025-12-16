@@ -122,10 +122,18 @@
 
                 button.style.backgroundColor = "#303030"
 
-                qgroup += div.children[0].textContent;
-                agroup += div.children[1].textContent;
+                for (i = 0; i < container.children.length; i++) {
+                    if (!qgroup) {
+                        qgroup[i] = div.children[0].textContent;
+                        agroup[i] = div.children[1].textContent;
+                    }
+                }
 
-                if (localStorage.getItem('qgroup') != null || localStorage.getItem('agroup') != null) {
+                ThisString(qgroup, agroup)
+            }
+
+            function ThisString(qgroup, agroup) {
+               if (localStorage.getItem('qgroup') != null || localStorage.getItem('agroup') != null) {
                     localStorage.removeItem('qgroup');
                     localStorage.removeItem('agroup');
 
@@ -134,7 +142,7 @@
                 } else {
                     localStorage.setItem('qgroup', JSON.stringify(qgroup));
                     localStorage.setItem('agroup', JSON.stringify(agroup));
-                }
+                } 
             }
 
             function RemoveSelect() {
@@ -159,6 +167,25 @@
                 groupselect.setAttribute('style', 'background')
 
 
+            }
+
+            function LoadGroup() {
+                const flashcardlist = container.getElementsByTagName('div')
+                let flashcard;
+                let questionarr = JSON.parse(localStorage.getItem('qgroup'))
+                let answerarr = JSON.parse(localStorage.getItem('agroup'))
+                let paragraph;
+
+                console.log(questionarr + answerarr)
+
+                for (i = 0; i < flashcardlist.length - 1; i++) {
+                    flashcard = flashcardlist[i]
+                    paragraph = flashcard.children;
+
+                    paragraph[0].textContent = questionarr[i];
+                    paragraph[1].textContent = answerarr[i];
+
+                }
             }
 
 
