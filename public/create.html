@@ -17,10 +17,10 @@
         <div class="body-container">
             <nav>
                 <ul>
-                    <li><a href="https://whosmikhail.github.io/WDProjPotassiumAyesGo">Home</a></li>
-                    <li><a href="https://whosmikhail.github.io/WDProjPotassiumAyesGo/public/game.html">Play!</a></li>
-                    <li><a href="https://whosmikhail.github.io/WDProjPotassiumAyesGo/public/collect.html">Collection</a></li>
-                    <li><a href="https://whosmikhail.github.io/WDProjPotassiumAyesGo/public/gacha.html">Gacha</a></li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="game.html">Play!</a></li>
+                    <li><a href="collect.html">Collection</a></li>
+                    <li><a href="gacha.html">Gacha</a></li>
                 </ul>
             </nav>
             <div class="flashcard-container" id="flashcard-container">
@@ -28,7 +28,6 @@
             </div>
             <button id="group-select" onclick="SelectGroup()">Select Group:</button>
             <button id="delete-select" onclick="LoadGroup()">Load Group:</button>
-
         </div>
 
         <div class="create-container">
@@ -40,10 +39,8 @@
             </div>
 
             <button class="submit" onclick="CreateFlashcard()">CREATE</button>
-
         </div>
         <script>
-
             let questionnum = 0
             let container = document.getElementById('flashcard-container');
             let qgrouplist = []
@@ -57,7 +54,6 @@
             }
 
             function CreateFlashcard() {
-
                 questionnum += 1;
 
                 const question = document.getElementById("Question");
@@ -83,7 +79,6 @@
                 flashcard.lastChild.id = 'B' + questionnum;  
 
                 container.innerHTML += empty;
-
             }          
             
             function RevealAnswer(x) {
@@ -93,7 +88,6 @@
 
                 div.children[1].style.opacity = '100';
             }
-            
 
             function SelectGroup() {
                 const flashcard = container.children
@@ -106,14 +100,11 @@
                     button[i].style.backgroundColor = "#e61717";
                     button[i].textContent = "Select";
                     orary.setAttribute('onclick', "SelectFlashcard(this)")
-
                 }
 
                 groupselect.textContent = "Finished?"
                 groupselect.setAttribute('onclick', "RemoveSelect()")
                 groupselect.style.backgroundColor = "#e61717"
-
-
             }
 
             function SelectFlashcard(x) {
@@ -130,11 +121,10 @@
                         break;
                     }
                 }
-                 
             }
 
             function ThisString(qgroup, agroup) {
-               if (localStorage.getItem('qgroup') != null || localStorage.getItem('agroup') != null) {
+                if (localStorage.getItem('qgroup') != null || localStorage.getItem('agroup') != null) {
                     localStorage.removeItem('qgroup');
                     localStorage.removeItem('agroup');
 
@@ -147,7 +137,6 @@
             }
 
             function RemoveSelect() {
-
                 ThisString(qgroup, agroup)
 
                 const groupselect = document.getElementById('group-select');
@@ -160,15 +149,12 @@
                     orary.textContent = "Reveal Answer";
                     orary.setAttribute('onclick', "RevealAnswer(this)")
                     orary.setAttribute('style', 'background-color: #004dc9')
-
                 }
 
                 groupselect.setAttribute('onclick', 'SelectGroup()')
                 groupselect.textContent = "Select Group?"
                 groupselect.removeAttribute('style', 'background-color: #004dc9');
                 groupselect.setAttribute('style', 'background')
-
-
             }
 
             function LoadGroup() {
@@ -186,11 +172,8 @@
 
                     paragraph[0].textContent = questionarr[i];
                     paragraph[1].textContent = answerarr[i];
-
                 }
             }
-
-
         </script>
     </body>
-</html> 
+</html>
