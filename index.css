@@ -204,3 +204,16 @@ nav a:hover,
 .red {
     background-image: url("Assets/Flashcard-BG-Red.png");
 }
+
+body {
+    animation: pageFadeIn 1.2s ease forwards;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
