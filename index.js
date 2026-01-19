@@ -7,7 +7,7 @@ let agroup = [];
 let pastY;
 
 function update() {
-    localStorage.clear
+    localStorage.clear();
 }
 
 window.addEventListener("load", () => {
@@ -18,4 +18,3 @@ window.addEventListener("load", () => {
         }, i * 150);
     });
 });
-
