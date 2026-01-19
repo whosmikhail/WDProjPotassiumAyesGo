@@ -97,9 +97,6 @@ button {
     font-family: "Tiktok Sans", sans-serif;
     color: white;
     font-weight: 900;
-
-    position: relative;
-    z-index: 1000;
 }
 
 .create-container {
@@ -213,4 +210,114 @@ nav a:hover,
 .fade-up.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+.create-page {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 769px) {
+    .body-container {
+        width: 70vw;
+    }
+
+    .create-container {
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    .create-page {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .body-container,
+    .create-container {
+        width: 95%;
+        max-width: 480px;
+    }
+
+    .flashcard {
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #plus {
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    label,
+    input,
+    button {
+        width: 100% !important;
+        margin: 0 0 10px 0 !important;
+        font-size: 16px;
+    }
+
+    .other ul {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .create-page {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .create-page {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .body-container,
+    .create-container {
+        width: 95%;
+        max-width: 480px;
+    }
+
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    nav a {
+        flex: 1 1 45%;
+        text-align: center;
+        padding: 8px 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .flashcard,
+    #plus {
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    label,
+    input,
+    button {
+        width: 100% !important;
+        margin: 0 0 10px 0 !important;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
 }
