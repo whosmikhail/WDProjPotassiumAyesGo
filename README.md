@@ -61,6 +61,7 @@ https://www.canva.com/design/DAG3KtN5EP8/0yxQ9--fSg6Z3Cj9x0veTA/edit
 * Works on all devices
 * Cards transport throughout all websites
 * Has a luck-based card system
+* Has a working "board game"
 
 ## Details (project-specific)
 * For the cards, we will be creating main designs for them while using css to make them look better.

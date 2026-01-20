@@ -24,10 +24,12 @@
                 </ul>
             </nav>
             <div class="flashcard-container" id="flashcard-container">
-                <div class="flashcard " id="zilch"><p></p><p style="opacity: 0;"></p><button id="reveal" onclick="RevealAnswer(this)">Reveal Answer</button></div>
+                <div class="group" name="group" id="zilch">
+                    <label for="group" class="group-label">Untitled Group 1:</label>
+                    <div class="flashcard " id="zilch"><p></p><p style="opacity: 0;"></p><button id="reveal" onclick="RevealAnswer(this)">Reveal Answer</button></div>
+                </div>
             </div>
-            <button id="group-select" onclick="SelectGroup()">Select Group:</button>
-            <button id="delete-select" onclick="LoadGroup()">Load Group:</button>
+            <button id="group-select" onclick="NewGroup()" popovertarget="group-form">New Group:</button>
         </div>
 
         <div class="create-container">
@@ -42,6 +44,7 @@
         </div>
         <script>
             let questionnum = 0
+            let groupnum = 1
             let container = document.getElementById('flashcard-container');
             let qgrouplist = []
             let agrouplist = []
@@ -89,38 +92,16 @@
                 div.children[1].style.opacity = '100';
             }
 
-            function SelectGroup() {
-                const flashcard = container.children
-                const button = container.getElementsByTagName('button')
-                const groupselect = document.getElementById('group-select')
-                for (i = 0; i < button.length; i++) {
-                    let temp = flashcard[i]
-                    let orary = button[i]
-
-                    button[i].style.backgroundColor = "#e61717";
-                    button[i].textContent = "Select";
-                    orary.setAttribute('onclick', "SelectFlashcard(this)")
-                }
-
-                groupselect.textContent = "Finished?"
-                groupselect.setAttribute('onclick', "RemoveSelect()")
-                groupselect.style.backgroundColor = "#e61717"
+            function NewGroup() {
+                groupnum += 1;
+                const container = document.getElementById('flashcard-container');
+                const newgroup = '<div class="group" name="group" id="zilch"><label for="group" class="group-label">Untitled Group ' + groupnum + ':</label><div class="flashcard " id="zilch"><p></p><p style="opacity: 0;"></p><button id="reveal" onclick="RevealAnswer(this)">Reveal Answer</button></div></div>'
+                container.innerHTML += newgroup;
             }
 
-            function SelectFlashcard(x) {
-                let button = document.getElementById(x.id);
-                let div = button.parentNode;
-                let divelem = div.children;
-
-                button.style.backgroundColor = "#303030"
-
-                for (i = 0; i < container.children.length; i++) {
-                    if (qgroup[i] == undefined || qgroup[i] == null) {
-                        qgroup[i] = divelem[0].textContent
-                        agroup[i] = divelem[1].textContent
-                        break;
-                    }
-                }
+            function NameGroup() {
+                const groupname = document.getElementById('grpname-input').value
+                localStorage.setItem('group' + groupnum, groupname)
             }
 
             function ThisString(qgroup, agroup) {
@@ -136,44 +117,6 @@
                 } 
             }
 
-            function RemoveSelect() {
-                ThisString(qgroup, agroup)
-
-                const groupselect = document.getElementById('group-select');
-                const button = container.getElementsByTagName('button')
-                const flashcard = container.children;
-                for (i = 0; i < button.length; i++) {
-                    let temp = flashcard[i];
-                    let orary = button[i];
-
-                    orary.textContent = "Reveal Answer";
-                    orary.setAttribute('onclick', "RevealAnswer(this)")
-                    orary.setAttribute('style', 'background-color: #004dc9')
-                }
-
-                groupselect.setAttribute('onclick', 'SelectGroup()')
-                groupselect.textContent = "Select Group?"
-                groupselect.removeAttribute('style', 'background-color: #004dc9');
-                groupselect.setAttribute('style', 'background')
-            }
-
-            function LoadGroup() {
-                const flashcardlist = container.children
-                let flashcard;
-                let questionarr = JSON.parse(localStorage.getItem('qgroup'))
-                let answerarr = JSON.parse(localStorage.getItem('agroup'))
-                let paragraph;
-
-                console.log(questionarr + answerarr)
-
-                for (i = 0; i < flashcardlist.length - 1; i++) {
-                    flashcard = flashcardlist[i]
-                    paragraph = flashcard.children;
-
-                    paragraph[0].textContent = questionarr[i];
-                    paragraph[1].textContent = answerarr[i];
-                }
-            }
         </script>
     </body>
 </html>

@@ -10,11 +10,19 @@ body {
 }
 
 .card {
-    min-width: 105px;
-    min-height: 148px;
+    min-width: 150px;
+
+    aspect-ratio: 5/7;
     border: 4px black solid;
     border-radius: 4px;
     flex-grow: 1;
+}
+
+.group {
+    margin: 4px;
+    width: 100%;
+    padding: 4px 10px;
+    background-color: #1b73ff;
 }
 
 .body-container {
@@ -75,6 +83,24 @@ label {
     color: white;
     font-weight: 900;
     margin: 0px 25%;
+}
+
+form {
+    background-color: #1b73ff;
+    border: 4px solid white;
+    border-radius: 4px;
+    width: 100%
+}
+
+#group-form {
+    width: 50%;
+    height: 50%;
+    display: flex;
+}
+
+.group-label {
+    margin: 10px 0px;
+    width: 25%;
 }
 
 input {
