@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Loot & Learn: Create Flashcard</title>
-        
-        <link rel="icon" type="png" href="../Assets/image-1.png">
-        <link rel="stylesheet" href="../index.css">
-        <link rel="script" href="../index.js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loot & Learn: Create Flashcard</title>
 
+<<<<<<< HEAD
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
@@ -30,18 +27,46 @@
                 </div>
             </div>
             <button id="group-select" onclick="NewGroup()" popovertarget="group-form">New Group:</button>
-        </div>
+=======
+    <link rel="icon" type="png" href="../Assets/image-1.png">
+    <link rel="stylesheet" href="../index.css">
+</head>
 
-        <div class="create-container">
-            <div class="flashcard" id="plus">
-                <label for="Question">Question:</label>
-                <input class="Question" id="Question">
-                <label for="Answer">Answer:</label>
-                <input class="Answer" id="Answer">
+<body onload="update()">
+
+<div class="create-page">
+
+    <div class="body-container">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="game.html">Play!</a></li>
+                <li><a href="collect.html">Collection</a></li>
+                <li><a href="gacha.html">Gacha</a></li>
+            </ul>
+        </nav>
+
+        <div class="flashcard-container" id="flashcard-container">
+            <div class="flashcard" id="zilch">
+                <p></p>
+                <p style="opacity: 0;"></p>
+                <button onclick="RevealAnswer(this)">Reveal Answer</button>
             </div>
-
-            <button class="submit" onclick="CreateFlashcard()">CREATE</button>
+>>>>>>> 01b09d86586ca816b280e8ba39e131857c8dd606
         </div>
+
+        <button id="group-select" onclick="SelectGroup()">Select Group:</button>
+        <button id="delete-select" onclick="LoadGroup()">Load Group:</button>
+    </div>
+
+    <div class="create-container">
+        <div class="flashcard" id="plus">
+            <label for="Question">Question:</label>
+            <input class="Question" id="Question">
+            <label for="Answer">Answer:</label>
+            <input class="Answer" id="Answer">
+        </div>
+<<<<<<< HEAD
         <script>
             let questionnum = 0
             let groupnum = 1
@@ -51,47 +76,47 @@
             let qgroup = [];
             let agroup = [];
             let pastY;
+=======
+>>>>>>> 01b09d86586ca816b280e8ba39e131857c8dd606
 
-            function update() {
-                localStorage.clear;
-            }
+        <button class="submit" onclick="CreateFlashcard()">CREATE</button>
+    </div>
 
-            function CreateFlashcard() {
-                questionnum += 1;
+</div>
 
-                const question = document.getElementById("Question");
-                const answer = document.getElementById("Answer");
-                const flashcard = document.getElementById('zilch');
-                const container = document.getElementById('flashcard-container');
-                const paragraph = flashcard.getElementsByTagName('p');
-                const empty = '<div class="flashcard " id="zilch"><p></p><p style="opacity: 0;"></p><button id="reveal" onclick="RevealAnswer(this)">Reveal Answer</button></div>'
-                
-                const tanong = paragraph[0];
-                const sagot = paragraph[1];
+<script>
+let questionnum = 0
+let container = document.getElementById('flashcard-container');
+let qgrouplist = []
+let agrouplist = []
+let qgroup = [];
+let agroup = [];
+let pastY;
 
-                const Qv = question.value;
-                const Av = answer.value;
+function update() {
+    localStorage.clear;
+}
 
-                localStorage.setItem('question' + questionnum, Qv)
-                localStorage.setItem('answer' + questionnum, Av)
+function CreateFlashcard() {
+    questionnum += 1;
 
-                tanong.textContent = localStorage.getItem('question' + questionnum)
-                sagot.textContent = localStorage.getItem('answer' + questionnum)
+    const question = document.getElementById("Question");
+    const answer = document.getElementById("Answer");
+    const flashcard = document.getElementById('zilch');
+    const container = document.getElementById('flashcard-container');
+    const paragraph = flashcard.getElementsByTagName('p');
+    const empty = '<div class="flashcard" id="zilch"><p></p><p style="opacity: 0;"></p><button onclick="RevealAnswer(this)">Reveal Answer</button></div>'
 
-                flashcard.id = 'Q' + questionnum;
-                flashcard.lastChild.id = 'B' + questionnum;  
+    const tanong = paragraph[0];
+    const sagot = paragraph[1];
 
-                container.innerHTML += empty;
-            }          
-            
-            function RevealAnswer(x) {
-                let button = document.getElementById(x.id);
-                let div = button.parentNode;
-                let divelem = div.children;
+    const Qv = question.value;
+    const Av = answer.value;
 
-                div.children[1].style.opacity = '100';
-            }
+    localStorage.setItem('question' + questionnum, Qv)
+    localStorage.setItem('answer' + questionnum, Av)
 
+<<<<<<< HEAD
             function NewGroup() {
                 groupnum += 1;
                 const container = document.getElementById('flashcard-container');
@@ -103,12 +128,34 @@
                 const groupname = document.getElementById('grpname-input').value
                 localStorage.setItem('group' + groupnum, groupname)
             }
+=======
+    tanong.textContent = localStorage.getItem('question' + questionnum)
+    sagot.textContent = localStorage.getItem('answer' + questionnum)
 
-            function ThisString(qgroup, agroup) {
-                if (localStorage.getItem('qgroup') != null || localStorage.getItem('agroup') != null) {
-                    localStorage.removeItem('qgroup');
-                    localStorage.removeItem('agroup');
+    flashcard.id = 'Q' + questionnum;
+    flashcard.lastChild.id = 'B' + questionnum;  
 
+    container.innerHTML += empty;
+}          
+
+function RevealAnswer(x) {
+    let button = document.getElementById(x.id);
+    let div = button.parentNode;
+    let divelem = div.children;
+
+    div.children[1].style.opacity = '100';
+}
+
+function SelectGroup() {}
+function SelectFlashcard(x) {}
+function ThisString(qgroup, agroup) {}
+function RemoveSelect() {}
+function LoadGroup()
+>>>>>>> 01b09d86586ca816b280e8ba39e131857c8dd606
+
+</script>
+
+<<<<<<< HEAD
                     localStorage.setItem('qgroup', JSON.stringify(qgroup));
                     localStorage.setItem('agroup', JSON.stringify(agroup));
                 } else {
@@ -119,4 +166,7 @@
 
         </script>
     </body>
+=======
+</body>
+>>>>>>> 01b09d86586ca816b280e8ba39e131857c8dd606
 </html>
