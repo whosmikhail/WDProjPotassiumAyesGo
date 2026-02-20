@@ -18,6 +18,14 @@ body {
     flex-grow: 1;
 }
 
+.Blue {
+    background-image: url("Assets/Flashcard-BG-Blue.png");
+}
+
+.Red {
+    background-image: url("Assets/Flashcard-BG-Red.png");
+}
+
 .group {
     margin: 4px;
     width: 100%;
