@@ -26,8 +26,8 @@
         </nav>
 
         <div class="flashcard-container" id="flashcard-container">
-            <div class="group" id="group">
-                <h1 style="color: white" id="group-name">GROUP 1:</h1>
+            <label style="color: white" id="group-name" onclick="RenameGroup()" for="group">GROUP 1:</label>
+            <div class="group-selected" id="group">
                 <div class="flashcard" id="zilch">
                     <p></p>
                     <p style="opacity: 0;"></p>
@@ -44,22 +44,23 @@
     <form class="create-container" id="create-container">
         <div class="flashcard" id="plus">
             <label for="Question">Question:</label>
-            <input class="Question" id="Question">
+            <input class="Question" id="Question" type="text">
             <label for="Answer">Answer:</label>
-            <input class="Answer" id="Answer">
+            <input class="Answer" id="Answer" type="text">
         </div>
 
-        <input type="text" list="card-themes">
+        <input list="card-themes" id="card-theme">
         <datalist id="card-themes">
             <option value="Red" class="Red">Red</option>
             <option value="Blue" class="Blue">Blue</option>
         </datalist>
 
-        <input type="submit" onsubmit="CreateFlashcard()">
+        <input type="submit">
     </form>
-
+    
 </div>
 
+<script src="../index.js"></script>
 
 
 
