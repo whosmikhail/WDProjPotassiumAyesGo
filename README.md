@@ -77,3 +77,19 @@ https://www.canva.com/design/DAG3KtN5EP8/0yxQ9--fSg6Z3Cj9x0veTA/edit
 
 ## definition of done
 * when all 3 features have been accomplished, and maybe even more :D
+
+
+----------------------------------------------------
+
+# FINAL MODIFICATION PROPOSAL
+
+## CRUD Features:
+* Create - Flashcards can be uploaded to groups by the user
+* Read - Data of flashcards will be saved to LocalStorage
+* Update - Flashcards and respective data can be edited at any time by the user
+* Delete - Flashcards can be removed along with their LocalStorage data by the user.
+
+
+## Other Updates:
+* Jeopardy like game that randomly generates flashcards that user has to answer correctly
+* Better customizability in style

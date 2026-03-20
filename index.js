@@ -50,7 +50,7 @@ function CreateFlashcard() {
     question = document.getElementById('Question')
     answer = document.getElementById('Answer')
     
-    flashcard.id = 'q' + questionnum;
+    flashcard.id = question.value;
     flashcard.appendChild(para1); //adds question
     flashcard.appendChild(para2); //adds answer
 
@@ -91,4 +91,27 @@ function CreateFlashcard() {
 
 }
 
+function RevealAnswer(xyz) {
+   flashcard = xyz.parentNode;
+   
+   paragraphs = flashcard.children;
+   para2 = paragraphs[1];
+   button = paragraphs[2];
+
+   para2.style = "opacity: 100";
+   button.innerText = "Hide Answer"
+   button.onclick = "HideAnswer(this)"
+}
+
+function HideAnswer(xyz) {
+    flashcard = xyz.parentNode;
+   
+   paragraphs = flashcard.children;
+   para2 = paragraphs[1];
+   button = paragraphs[2];
+
+   para2.style = "opacity: 0";
+   button.innerText = "Reveal Answer"
+   button.onclick = "RevealAnswer(this)"
+}
 
